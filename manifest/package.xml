@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Logger</members>
+        <members>Logger_Test</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Log__c.Duration__c</members>
+        <members>Log__c.Endpoint__c</members>
+        <members>Log__c.Exception__c</members>
+        <members>Log__c.Finish_Time__c</members>
+        <members>Log__c.Log_Body__c</members>
+        <members>Log__c.Log_Name__c</members>
+        <members>Log__c.Response__c</members>
+        <members>Log__c.Result__c</members>
+        <members>Log__c.Start_Time__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Log__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Log__c-Log Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Log_Read_Access</members>
+        <name>PermissionSet</name>
+    </types>
+    <version>59.0</version>
+</Package>
