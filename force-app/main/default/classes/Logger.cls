@@ -87,7 +87,7 @@ public class Logger {
         HttpResponse myResponse
     ) {
         endpoint = myRequest.getEndpoint();
-        result = myResponse.getStatusCode() + myResponse.getStatus();
+        result = myResponse.getStatusCode() + ' ' + myResponse.getStatus();
         return log(logName, myRequest.getBody(), myResponse.getBody(), '');
     }
 
