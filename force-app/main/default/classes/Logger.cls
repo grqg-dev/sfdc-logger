@@ -16,7 +16,8 @@
  *
  *
  * Future enhancements / inspo :
- * Log stash and flusher
+ * ~~Log stash and flusher~~
+ *      added minimal stash + flush. need add a reset for stash once flushed
  * Use platform events to decouple the log insert from the main transaction
  * A mature dml transaction framework can also tie into this and implement automatic logging
  *
@@ -31,6 +32,17 @@ public class Logger {
     static DateTime finishDT;
     static String endpoint;
     static String result;
+    static String providedException = '';
+    static List<Log__c> stashedLogs = new List<Log__c>();
+
+    public static void setException(String s) {
+        providedException = s;
+    }
+
+    public static List<Log__c> flushLogs() {
+        insert stashedLogs;
+        return stashedLogs;
+    }
 
     static String formatException(Exception e) {
         return e.getTypeName() +
@@ -88,7 +100,12 @@ public class Logger {
     ) {
         endpoint = myRequest.getEndpoint();
         result = myResponse.getStatusCode() + ' ' + myResponse.getStatus();
-        return log(logName, myRequest.getBody(), myResponse.getBody(), '');
+        return log(
+            logName,
+            myRequest.getBody(),
+            myResponse.getBody(),
+            providedException
+        );
     }
 
     public static Log__c log(
@@ -115,6 +132,8 @@ public class Logger {
                     System.debug('Error message: ' + error.getMessage());
                 }
             }
+        } else {
+            stashedLogs.add(logToInsert);
         }
         return logToInsert;
     }
